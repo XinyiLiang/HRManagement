@@ -1,0 +1,25 @@
+empid,from_date,to_date,salaries,title
+1001,12/17/2015,,50000,Social Media Coordinator
+1002,9/10/2012,,90000,Finance Manager
+1002,9/11/2011,9/10/2012,76000,Financial Analyst
+1003,2/18/2011,,89000,Sales Manager
+1003,2/18/2009,2/18/2011,56000,Sales Representative
+1004,6/27/2016,,98000,HR Manager
+1004,6/28/2011,6/27/2016,76000,HR Analyst
+1005,1/22/2011,,55000,Marketing Assistant
+1006,5/22/2009,,45000,Payroll Clerk
+1007,4/20/2007,,56000,Sales Representative
+1008,7/29/2009,,65000,Payroll Director
+1009,11/26/2011,,90000,Marketing Manager
+1009,11/26/2009,11/26/2011,68000,Marketing Analyst
+1010,8/2/2011,,75000,Financial Analyst
+1011,9/23/2000,,56000,Sales Representative
+1012,10/9/2013,,54000,Recruiter
+1013,12/1/2012,,51000,Marketing Assistant
+1014,4/2/2011,,42000,Payroll Clerk
+1015,9/2/2004,,50000,Sales Assistant
+1016,2/18/2007,,76000,HR Analyst
+1017,7/9/2006,,65000,Marketing Analyst
+1018,11/19/2009,,50000,Finance Clerk
+1019,9/26/2017,,55000,Customer Care Representative
+1020,10/29/2018,,65000,Technical Recruiter

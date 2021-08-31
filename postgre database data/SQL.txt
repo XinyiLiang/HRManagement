@@ -1,0 +1,64 @@
+SET SCHEMA   'hrManagement';
+
+CREATE TABLE departments(
+   deptID int NOT NULL primary key,
+	deptName varchar(50) NOT NULL
+)
+
+INSERT INTO departments
+VALUES (1, 'Marketing');
+
+INSERT INTO departments
+VALUES (2, 'Operations');
+INSERT INTO departments
+VALUES (3, 'Finance');
+INSERT INTO departments
+VALUES (4, 'Sales');
+INSERT INTO departments
+VALUES (5, 'Human Resource');
+INSERT INTO departments
+VALUES (6, 'Purchase');
+
+CREATE TYPE gender_t as enum('Female', 'Male', 'Transgender', 'Gender non-binary','not listed');
+
+CREATE TABLE employees(
+   empID int NOT NULL primary key,
+   empFName varchar(50) NOT NULL,
+   empLName varchar(50) NOT NULL,
+   empPhone varchar(10),
+   gender gender_t NOT NULL,
+   hire_date DATE	
+)
+INSERT INTO employees
+VALUES (1, 'Joe', 'Janson', '6478902315', 'Male', TO_DATE('17/12/2015', 'DD/MM/YYYY'));
+INSERT INTO employees
+VALUES (2, 'Jacob', 'Edwards', '6473370239', 'Male', TO_DATE('11/09/2011', 'DD/MM/YYYY'));
+INSERT INTO employees
+VALUES (3, 'Emily', 'Fox', '6474071882', 'Female', TO_DATE('18/02/2009', 'DD/MM/YYYY'));
+INSERT INTO employees
+VALUES (4, 'Madison', 'Johnson', '6480099289', 'Female', TO_DATE('28/06/2019', 'DD/MM/YYYY'));
+INSERT INTO employees
+VALUES (5, 'Christopher', 'Miller', '6478732847', 'Male', TO_DATE('22/01/2011', 'DD/MM/YYYY'));
+
+INSERT INTO employees
+VALUES (6, 'Andrew', 'Rodriguez', '6478091927', 'Female', TO_DATE('20/04/2007', 'DD/MM/YYYY'));
+
+INSERT INTO employees
+VALUES (7, 'Samantha', 'Martinez', '6474078934', 'Female', TO_DATE('22/05/2009', 'DD/MM/YYYY'));
+
+INSERT INTO employees
+VALUES (8, 'William', 'Max', '6474074739', 'Female', TO_DATE('29/07/2009', 'DD/MM/YYYY'));
+
+INSERT INTO employees
+VALUES (9, 'Alexander', 'Jacquex', '6474792874', 'Female', TO_DATE('26/11/2009', 'DD/MM/YYYY'));
+
+CREATE TABLE salaries(
+   empID int NOT NULL,
+   from_date DATE NOT NULL,
+   to_date DATE NOT NULL DEFAULT CURRENT_DATE,
+   salary int NOT NULL,
+   PRIMARY KEY ( empID, from_date ),
+   FOREIGN KEY ( empID) REFERENCES employees ( empID ) 
+    ON UPDATE NO ACTION  
+    ON DELETE  CASCADE
+)	
