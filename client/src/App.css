@@ -1,0 +1,223 @@
+html, body {
+  margin:0px;
+  height:100%;
+}
+
+
+
+.homepage{
+background-color: rgb(56, 57, 139);
+color:white;
+font-weight: bold;
+margin: 0 auto;
+padding: auto;
+height: 74vh;
+width: 100%;
+ 
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.homepage h1{
+  font-size: 4.5em;
+  
+  font-family: 'Varela Round', sans-serif;
+  }
+
+
+  .navbar{
+    height: 13vh;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .Nav-title{
+    color: #012468;
+    font-family: 'Varela Round', sans-serif;
+    margin: 0 auto;
+    font-size: 2em;
+  }
+  .navItemStyle {
+   
+    padding-top: 1em;
+    padding-right: 1em;
+    text-align: center;
+    
+}
+#navbarNav{
+  background-color: white;
+  z-index:6;
+  margin-bottom: 1em;
+  
+}
+
+div#navbarNav.navbar-collapse.navItemStyle.collapse.show{
+  background-color: whitesmoke;
+}
+
+.navbar-nav .nav-item .nav-link {
+  margin-left: 15px;
+  color: #012468;
+  font-size: 1.3em;
+  font-family: 'Varela Round', sans-serif;
+ 
+  }
+
+  .navbar-nav .nav-item .nav-link:hover{
+      color: rgb(45, 64, 168);
+      font-weight: bold;
+  }
+
+  
+
+  .logo{
+    height: 80%;
+    width: auto;
+    display: block;
+    margin:  auto;
+    padding-right: 0.6em;
+  }
+  
+  .footer{
+    height: 13vh;
+    width: 100%;
+  }
+
+
+/* log in page css */
+.LoginPageContainer{ 
+  position: absolute;
+  z-Index: 100;
+  top:0;
+  bottom: 0;
+  right:0;
+  left:0;
+  background-color: rgb(155, 194, 206);
+  margin: auto;
+  height: auto;
+  overflow: auto;
+ }
+ 
+ .LoginComponent{
+   border-radius: 18px;
+   border: 2px solid rgb(65, 60, 47);
+   position:absolute;
+   top: 0; bottom: 0; left: 0; right: 0;
+   margin: auto;
+   height: 80vh;
+   width: 50vw;
+   background-color: #f0f0f0;
+  
+ }
+ 
+ .LoginComponent h1{
+   color:rgb(65, 60, 47);
+   text-align: center;
+  
+ }
+ 
+ .LoginComponent a{
+   text-decoration: none;
+ }
+.login-Title h2 {
+   font-size: 2em;
+   color:rgb(65, 60, 47);
+   
+ }
+
+ .login-Title{
+   
+   padding-top:2em;
+   display: flex;
+   justify-content: center;
+   text-align: center;
+ }
+ 
+ #LoginForm{
+  
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+}
+#LoginForm input{
+  margin: 1em;
+  padding: 0.5em;
+}
+
+#LoginForm form {
+  
+  text-align: center;
+}
+
+#logOutBtn{
+  font-size: 1.3em;
+  font-family: 'Varela Round', sans-serif;
+}
+.LoginLogo{
+  height: 2.5em;
+  width: auto;
+  display: block;
+  
+  display: inline-flex;
+  padding-right: 0;
+
+}
+
+
+/* profile css */
+.profile{
+  background-color: rgb(71, 73, 170);
+  max-width: 100%;
+  margin: 0;
+}
+
+.profilerow{
+  line-height: 74vh; 
+  text-align: center; 
+  min-height: 74vh;
+  
+}
+
+.profilerow span{
+  display: inline-block;
+  vertical-align: middle;
+  color:white;
+}
+.empinfo{
+  background-color: rgb(56, 57, 139);
+  color:white;
+
+}
+.ContactInfo{
+border-bottom: white 1px solid;
+}
+
+.ContactInfo h3{
+   margin-right: 3em;
+}
+#UpdateBtn{
+  font-size: 1em;
+  font-family: 'Varela Round', sans-serif;
+  height: 70%;
+}
+
+.ManagerMenu{
+  width: 100%;
+}
+
+.ManagerMenu a{
+  background-color: white;
+  color:rgb(56, 57, 139);
+  font-weight: bold;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: white;
+  font-weight: bold;
+  background-color: rgb(56, 57, 139);
+  border-color: none;
+  border-bottom: none;
+}

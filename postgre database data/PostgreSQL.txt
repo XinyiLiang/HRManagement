@@ -1,0 +1,46 @@
+Host
+ec2-54-164-22-242.compute-1.amazonaws.com
+Database
+d7iops1p830gmg
+User
+mewbmzuljlgpxw
+Port
+5432
+Password
+cc67fc9d02b40023f2b79d095d35d17548141b02d25b0a156e0f4e1797cef85c
+URI
+postgres://mewbmzuljlgpxw:cc67fc9d02b40023f2b79d095d35d17548141b02d25b0a156e0f4e1797cef85c@ec2-54-164-22-242.compute-1.amazonaws.com:5432/d7iops1p830gmg
+Heroku CLI
+heroku pg:psql postgresql-fluffy-76982 --app hr-management-appp
+
+
+SET search_path TO 'hrManagement';
+
+\COPY salaries from 'C:\Users\hp\Desktop\hr\postgre database\salaries.csv' csv header;
+
+\COPY employees from 'C:\Users\hp\Desktop\hr\postgre database\employees.csv' csv;
+
+
+\COPY dept_employees from 'C:\Users\hp\Desktop\hr\deptemployee.csv' csv header;
+
+\COPY departments from 'C:\Users\hp\Desktop\hr\postgre database\departments.csv' csv;
+
+
+SELECT e.empID, e.empfname, e.emplname, e.empPhone, e.email, e.gender, e.hire_date, d.deptName,s.title
+FROM employees e, dept_employees de, departments d, salaries s
+where e.empid = s.empid
+AND de.emp_id = e.empid
+AND de.dept_id = d.deptid
+AND de.to_date IS NULL
+AND s.to_date IS NULL;
+
+
+SELECT e.empid, e.emplname, e.empfname, 
+(SELECT CONCAT(m.empfname, ',', m.emplname,'(id:',m.empid,')') AS manager
+ FROM employees m where dm.empid = m.empid)
+FROM employees e, departments d, dept_employees de, dept_manager dm
+where e.empid = de.empid
+AND d.deptid = de.deptid
+AND dm.deptid = d.deptid
+AND de.to_date IS NULL
+AND de.to_date IS NULL;
