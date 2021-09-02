@@ -119,13 +119,15 @@ router.get('/get/getDeptEmployees/:empid', (req, res, next) => {
     
   const empid = req.params.empid;
   
-  pool.query(`SELECT distinct e.empid, e.emplname, e.empfname, e.empphone, e.gender, de.deptid
-  from employees e, dept_employees de
+  pool.query(`SELECT distinct e.empid, e.emplname, e.empfname, e.empphone, e.gender, de.deptid, sa.title
+  from "hrManagement".employees e, "hrManagement".dept_employees de, "hrManagement".salaries sa
   where de.deptid = 
   (select distinct de.deptid 
-   from dept_employees de 
+   from "hrManagement".dept_employees de 
    where de.empid = $1)
-   and e.empid = de.empid`,  [ empid],
+   and e.empid = de.empid
+   and e.empid = sa.empid
+   and sa.to_date is null`,  [ empid],
 
               (q_err, q_res) => {
                 

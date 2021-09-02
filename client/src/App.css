@@ -221,3 +221,10 @@ border-bottom: white 1px solid;
   border-color: none;
   border-bottom: none;
 }
+
+
+#deptEmpTable{
+  background-color: rgb(95, 96, 151);
+  color: white;
+  margin-left: 2em;
+}

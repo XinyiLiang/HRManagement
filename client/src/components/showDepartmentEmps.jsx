@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import {Tabs, Tab} from 'react-bootstrap'
+import {Tabs, Tab, Table} from 'react-bootstrap'
 
 export function ShowDeparmentEmps (){
 
@@ -8,21 +8,25 @@ export function ShowDeparmentEmps (){
     const isManager = sessionStorage.getItem('isManager');
     const auth = sessionStorage.getItem('auth');
     const history = useHistory();
+    const empid = sessionStorage.getItem('empid');
+    const [DeptEmployees, DeptEmpSet] = useState([]);
+
 
     const [key, setKey] = useState('AllEmployees');
 
     useEffect(() => {
         if(auth == 'true'){
-        // async function fetchMyManager() { 
-        //     let response = await fetch(`/get/getEmployeeManager/${empid}`, {
-        //         method:'GET'
-        //         }).then(data => data.json()).then(data => {
-        //             console.log(data.mid + " " + empid);
+        async function fetchDeptEmployees() { 
+            let response = await fetch(`/get/getDeptEmployees/${empid}`, {
+                method:'GET'
+                }).then(data => data.json()).then(data => {
+                    DeptEmpSet(data);
+                    console.log(data);
                     
-        //         })
-        //     }
-        console.log( "inside:" + isManager)
-        // fetchMyManager();
+                })
+            }
+       
+        fetchDeptEmployees();
 }else{
     history.push('/Login')
 }
@@ -41,13 +45,33 @@ export function ShowDeparmentEmps (){
       
           >
             <Tab eventKey="AllEmployees" title="All Employees">
-            <p> all employees</p>
-            <p> all employees</p>
-            <p> all employees</p>
-            <p> all employees</p>
-            <p> all employees</p>
-            <p> all employees</p>
+              <br/>
+            <Table striped hover id="deptEmpTable">
+            <thead>
+                  <tr>
+                   <th>ID</th>
+                   <th>First Name</th>
+                   <th>Last Name</th>
+                   <th>Job Title</th>
+
+                  </tr>
+             </thead>
+             <tbody>
+            {DeptEmployees.map(data =>(
+                   <tr >
+                     
+                     <td>{data.empid}</td> 
+                     <td>{data.empfname}</td> 
+                     <td>{data.emplname}</td> 
+                     <td>{data.title}</td> 
+                    </tr>
+              ))}
+               
+              
+              </tbody>
+            </Table>
             </Tab>
+
             <Tab eventKey="Modified" title="Modified">
               <p>modified</p>
             </Tab>
