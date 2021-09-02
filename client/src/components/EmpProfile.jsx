@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import {UpdateProfile} from './updateProfile';
+import {UpdateContact} from './UpdateContact';
 import {ShowDeparmentEmps} from './showDepartmentEmps';
 export function EmpProfile() {
 
@@ -15,9 +15,9 @@ export function EmpProfile() {
         const history = useHistory();
 
         useEffect(() => {
-            if(auth == 'true'){
+            if(auth === 'true'){
             async function fetchMyAPI() {
-            let response = await fetch(`/get/getEmployeeInfo/${empid}`, {
+             await fetch(`/get/getEmployeeInfo/${empid}`, {
                 method:'GET'
                 }).then(response => response.json()).then(data => {
                     
@@ -26,7 +26,7 @@ export function EmpProfile() {
                 })               
             }
             async function fetchMyManager() {
-                let response = await fetch(`/get/getEmployeeManager/${empid}`, {
+                 await fetch(`/get/getEmployeeManager/${empid}`, {
                     method:'GET'
                     }).then(managerData => managerData.json()).then(mdata => {
     
@@ -92,7 +92,7 @@ export function EmpProfile() {
                       <div class="container p-2">
                                <div class="row ContactInfo">
                                  <h3 pb-2>Contact Info</h3>
-                             <UpdateProfile />
+                             <UpdateContact />
                        </div>
                        <div class="row pt-2 pb-2">
                               <div class="col-5 col-sm-3 col-md-3 col-lg-2  ">Phone:</div>

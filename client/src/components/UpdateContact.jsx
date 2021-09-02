@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 
-export function UpdateProfile(){
+export function UpdateContact(){
 
     const [PModal, setPShow] = React.useState(false);
     const CloseP = () => setPShow(false);
@@ -19,7 +19,7 @@ export function UpdateProfile(){
     const history = useHistory();
 
     useEffect(() => {
-        if(auth == 'true'){
+        if(auth === 'true'){
         async function fetchMyAPI() {
         let response = await fetch(`/get/getEmployeeInfo/${empid}`, {
             method:'GET'
@@ -118,4 +118,4 @@ export function UpdateProfile(){
 
     }
 
-export default UpdateProfile;
+export default UpdateContact;

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Form, Field } from 'react-advanced-form'
-import { Input, Button } from 'react-advanced-form-addons'
+import React from "react";
+import { Button } from 'react-advanced-form-addons'
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import {useAlert } from 'react-alert';
@@ -19,13 +18,13 @@ export function Login() {
 
     return axios.post(`/get/LoginEmpCheckId`,data)
         .then(res => {
-          if (res.data.length == 1)
+          if (res.data.length === 1)
           {
             axios.post('/get/userLogin', data)
             //.then(res => res.json())
             .then(res => {
               console.log(res.data);
-             if (res.data.length == 1) 
+             if (res.data.length === 1) 
                {
                 // console.log('user exists');
                  sessionStorage.setItem("auth", "true");
