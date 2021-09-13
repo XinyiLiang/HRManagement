@@ -2,6 +2,9 @@
 
 This project was for HR to manage employees on a company.
 
+## Online deployment
+https://hr-manage-app-deploy.herokuapp.com/
+
 ## Used Knowledge
 
 React, Node.js, Bootstrap, HTML, CSS, PostgreSQL, axios
