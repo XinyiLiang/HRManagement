@@ -119,15 +119,79 @@ router.get('/get/getDeptEmployees/:empid', (req, res, next) => {
     
   const empid = req.params.empid;
   
-  pool.query(`SELECT distinct e.empid, e.emplname, e.empfname, e.empphone, e.email, e.gender, de.deptid, sa.title
-  from "hrManagement".employees e, "hrManagement".dept_employees de, "hrManagement".salaries sa
+  pool.query(`SELECT distinct e.empid, e.emplname, e.empfname, e.empphone, e.email, e.gender, d.deptname, sa.title
+  from "hrManagement".employees e, "hrManagement".dept_employees de, "hrManagement".salaries sa, "hrManagement".departments d
   where de.deptid = 
   (select distinct de.deptid 
    from "hrManagement".dept_employees de 
    where de.empid = $1)
    and e.empid = de.empid
    and e.empid = sa.empid
+   and de.deptid = d.deptid
    and sa.to_date is null`,  [ empid],
+
+              (q_err, q_res) => {
+                
+                if(q_err) return next(q_err);
+                             
+                  //res.send(q_res);
+                  res.json(q_res.rows);
+        })
+  
+})
+
+
+
+//get to do list of a specific department
+router.get('/get/getEmpToDoList/:empid', (req, res, next) => {
+    
+  const empid = req.params.empid;
+  
+
+  pool.query(`SELECT * from "hrManagement".todolist
+              WHERE empid = $1`,  [ empid],
+
+              (q_err, q_res) => {
+                
+                if(q_err) return next(q_err);
+                             
+                  //res.send(q_res);
+                  res.json(q_res.rows);
+        })
+  
+})
+
+
+router.post('/put/addnewlist/:empid', (req, res, next) => {
+    
+  const empid = req.params.empid;
+  const list_title =  req.body.listTitle ; //"\'\{" + req.body.listTitle +"\}\'"
+  const list_content = req.body.listContent   ;
+
+  pool.query(`INSERT  INTO "hrManagement".todolist
+  (empid, list_title, list_content)
+VALUES ( $1,  ARRAY[$2], ARRAY[$3])`,  [ empid, list_title, list_content], //
+
+              (q_err, q_res) => {
+                
+                if(q_err) return next(q_err);
+                             
+                  //res.send(q_res);
+                  res.json(q_res.rows);
+        })
+  
+})
+
+
+// delete one list 
+
+router.delete('/delete/deleteOneList/:empid/:id', (req, res, next) => {
+    
+  const empid = req.params.empid;
+  const id =  req.params.id ; //"\'\{" + req.body.listTitle +"\}\'"
+  
+  pool.query(`DELETE FROM "hrManagement".todolist
+  WHERE empid=$1 AND id=$2`,  [ empid, id], //
 
               (q_err, q_res) => {
                 

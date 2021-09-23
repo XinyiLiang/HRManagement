@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {Tabs, Tab, Table} from 'react-bootstrap';
 import { Button, Modal} from 'react-bootstrap';
 import { useForm } from "react-hook-form";
-
+import {ToDoList } from "./ToDoList";
 
 export function ShowDeparmentEmps (){
 
@@ -13,14 +13,14 @@ export function ShowDeparmentEmps (){
     const history = useHistory();
     const empid = sessionStorage.getItem('empid');
     const [DeptEmployees, DeptEmpSet] = useState([]);
+
     const [ModifyEmp, ModifyEmpSet] = useState([]);
 
     const [EMPModal, setShow] = React.useState(false);
     const CloseEMP = () => setShow(false);
     const OpenEMP = () => setShow(true);
 
-
-    const [key, setKey] = useState('AllEmployees');
+    const [key, setKey] = useState('ToDoListTab');
 
     useEffect(() => {
         if(auth === 'true'){
@@ -29,7 +29,6 @@ export function ShowDeparmentEmps (){
                 method:'GET'
                 }).then(data => data.json()).then(data => {
                     DeptEmpSet(data);
-                    console.log(data);
                     
                 })
             }
@@ -50,6 +49,7 @@ const handleModify= (data)=> {
   OpenEMP();
 }
 
+
 const handleSubmitModifyEmp= ()=>{
 
 }
@@ -62,9 +62,13 @@ const handleSubmitModifyEmp= ()=>{
             id="controlled-tab-example"
             activeKey={key}
             onSelect={(k) => setKey(k)}
-            className="mt-3 ManagerMenu" 
+            className="mt-3 TabMenu" 
       
           >
+            <Tab eventKey="ToDoListTab" title="To Do List">
+            <br/>
+               <ToDoList />
+            </Tab>
             <Tab eventKey="AllEmployees" title="All Employees">
               <br/>
             <Table striped hover id="deptEmpTable">
@@ -75,7 +79,7 @@ const handleSubmitModifyEmp= ()=>{
                    <th>Last Name</th>
                    <th>Job Title</th>
                    <th></th>
-                   <th></th>
+                   
                   </tr>
              </thead>
              <tbody>
@@ -87,11 +91,11 @@ const handleSubmitModifyEmp= ()=>{
                      <td>{data.emplname}</td> 
                      <td>{data.title}</td> 
                      
-                     {/* <td><button type="button" class="btn btn-info"
-                          onClick={() => {handleModify(data)}}>Modify
+                     <td><button type="button" class="btn btn-info"
+                          onClick={() => {handleModify(data)}}>Details
                          </button></td>
 
-                     <td><button type="button" class="btn btn-danger">Delete</button></td> */}
+                     
                     </tr>
               ))}
                
@@ -100,43 +104,50 @@ const handleSubmitModifyEmp= ()=>{
             </Table>
             </Tab>
 
-            <Tab eventKey="Modified" title="Modified">
-              <p>modified</p>
-            </Tab>
+            
            
           </Tabs>
 
 
                
 
-{/* Modal: update a sepecific employee by his Manager */}
+{/* Modal: view a sepecific employee details */}
 
 <Modal
   show={EMPModal}
   onHide={CloseEMP}
   aria-labelledby="contained-modal-title-vcenter"
   centered 
+  id = "ManagerModifyEmp"
 >
  
-  <Modal.Header  closeButton>
-  <Modal.Title>{ModifyEmp.empfname} {ModifyEmp.emplname} - Modify</Modal.Title>
+  <Modal.Header >
+  <Modal.Title>Employee Details </Modal.Title>
   </Modal.Header>
 
 <Modal.Body>
 
 <form onSubmit={handleSubmit(handleSubmitModifyEmp)} >
-    
-    <label class="col-4 text-right">Phone Number: {ModifyEmp.empphone}</label>
-    
+    <label class="col-4  text-right font-weight-bold">Employee ID:</label>
+    <label class="col-8  text-left mb-3">{ModifyEmp.empid}</label>
+    <label class="col-4  text-right font-weight-bold">Employee name:</label>
+    <label class="col-8  text-left mb-3">{ModifyEmp.empfname} {ModifyEmp.emplname}</label>
+    <label class="col-4  text-right font-weight-bold">Department:</label>
+    <label class="col-8  text-left mb-3">{ModifyEmp.deptname}</label>
+    <label class="col-4  text-right font-weight-bold">Job title:</label>
+    <label class="col-8  text-left mb-3">{ModifyEmp.title}</label>
+    <label class="col-4 text-right font-weight-bold">Phone Number: </label>
+    <label class="col-8  text-left mb-3">{ModifyEmp.empphone}</label>
    <br/>
  
-   <label class="col-4 text-right">Email:</label>
+   <label class="col-4 text-right font-weight-bold">Email:</label>
+   <label class="col-8  text-left">{ModifyEmp.email}</label>
+   
 
 
    <br/>
 
-   <button  class="mx-auto d-block mt-3 btn btn-success btn-sm" bsSize="large" 
-           type="submit" primary id="UpdateBtn"  >Update</button>
+  
 
 </form>
 </Modal.Body>
@@ -156,7 +167,24 @@ Close
             )
         
      }else{
-         return( <div> not a  manager </div>)
+         return(  
+         <div class="container pt-2 pl-2 pr-2">
+         <div class="row"> 
+        <Tabs
+        id="controlled-tab-example"
+        activeKey={key}
+        onSelect={(k) => setKey(k)}
+        className="mt-3 TabMenu"
+      >
+
+        <Tab eventKey="ToDoListTab" title="To Do List">
+           <ToDoList />
+        </Tab>
+        
+       
+      </Tabs>
+      </div>
+      </div>)
         
      }
 

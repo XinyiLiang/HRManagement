@@ -23,4 +23,14 @@ redirect current path to the './server' and install necessary documents by `npm 
 on the terminal, redirect current path to the './server' and start the back end by `npm run` \
 on the terminal, redirect current path to the './client' and start the front end by `npm run` \
 \
-the App will show on: http://localhost:3000/
+the App will show on: http://localhost:3000/ \
+
+
+### Data to test
+Manager Level account: \
+employee ID: 1002     password: 1002\
+employee ID: 1003     password: 1003\
+\
+normal employees:\
+employee ID: 1001     password: 1001\
+employee ID: 1004     password: 1004
