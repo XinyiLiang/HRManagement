@@ -30,10 +30,6 @@ app.all('/*', function(req, res, next) {
 
 
 
-///
-//app.use(express.static(path.join(__dirname, '../build')));
-
-
 app.use('/', indexRouter);
 
 

@@ -26,7 +26,9 @@ redirect current path to the './server' and install necessary documents by `npm 
 on the terminal, redirect current path to the './server' and start the back end by `npm run` \
 on the terminal, redirect current path to the './client' and start the front end by `npm run` \
 \
-the App will show on: http://localhost:3000/
+
+the App will show on: http://localhost:3000/ \
+
 
 
 ### Data to test
